@@ -31,3 +31,7 @@ DEVTO_API_KEY=... node scripts/crosspost-devto.mjs src/content/posts/<slug>.md
 ```
 
 Creates a draft with the canonical URL pointing at this site.
+
+## Newsletter drafts
+
+When a new non-draft post is pushed to `main`, the workflow creates a **draft** email in Buttondown (it never sends). Add a `BUTTONDOWN_API_KEY` repository secret (Settings → Secrets and variables → Actions); without it the step is skipped. Review and send the draft from the Buttondown dashboard.

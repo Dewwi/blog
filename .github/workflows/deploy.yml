@@ -38,3 +38,26 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Creates a Buttondown DRAFT (never sends) for each newly added, non-draft post.
+  # Needs the BUTTONDOWN_API_KEY repository secret; skipped quietly without it.
+  newsletter:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Draft newsletter for new posts
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          files=$(git diff --name-only --diff-filter=A "$BEFORE" "$GITHUB_SHA" -- 'src/content/posts/*.md' || true)
+          node scripts/newsletter-draft.mjs $files
