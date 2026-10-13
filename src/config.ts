@@ -4,7 +4,7 @@ export const config = {
   url: 'https://david.lequin.dev',
   title: 'David Lequin',
   role: 'Data and AI engineer in London',
-  bio: 'Data engineer, then AI engineer in London. I build stuff with Claude and run agents on Kubernetes for a living.',
+  bio: 'Data or AI Engineer in London. I build stuff with Claude and run agents on Kubernetes for a living.',
   location: 'London',
   email: 'david@lequin.dev',
   links: {
