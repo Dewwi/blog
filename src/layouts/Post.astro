@@ -1,0 +1,80 @@
+---
+import Base from './Base.astro';
+import TOC from '../components/TOC.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { config } from '../config';
+import { formatDate, readingTime, slugifyTag, postUrl, type Post } from '../lib/posts';
+
+interface Props { post: Post; headings: { depth: number; slug: string; text: string }[]; prev?: Post; next?: Post }
+const { post, headings, prev, next } = Astro.props;
+const { title, description, date, updated, tags } = post.data;
+const url = postUrl(post);
+const words = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const image = `/og/${post.id}.png`;
+const schema = [{
+  '@type': 'BlogPosting',
+  '@id': `${url}#article`,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  headline: title,
+  description,
+  datePublished: date.toISOString(),
+  dateModified: (updated ?? date).toISOString(),
+  image: [new URL(image, config.url).href],
+  author: { '@id': `${config.url}/#person` },
+  publisher: { '@id': `${config.url}/#person` },
+  isPartOf: { '@id': `${config.url}/#website` },
+  keywords: tags.join(', '),
+  wordCount: words,
+  inLanguage: 'en-GB',
+}];
+---
+<Base
+  title={title}
+  description={description}
+  image={image}
+  imageAlt={`Social card for “${title}”`}
+  type="article"
+  published={date}
+  modified={updated ?? date}
+  tags={tags}
+  breadcrumbs={[{ name: 'Writing', path: '/blog/' }, { name: title, path: `/blog/${post.id}/` }]}
+  schema={schema}
+>
+  <article>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/">Writing</a></nav>
+    <header class="post-head">
+      <p class="meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {updated && <> · updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time></>}
+        · {readingTime(post.body)} min read
+      </p>
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
+      <p class="tags">{tags.map((t) => <a href={`/tags/${slugifyTag(t)}/`}>#{t}</a>)}</p>
+    </header>
+    <TOC headings={headings} />
+    <div class="prose"><slot /></div>
+  </article>
+  <Newsletter />
+  <nav class="post-nav" aria-label="More posts">
+    {prev ? <a class="prev" href={`/blog/${prev.id}/`}><small>← Older</small><strong>{prev.data.title}</strong></a> : <span />}
+    {next && <a class="next" href={`/blog/${next.id}/`}><small>Newer →</small><strong>{next.data.title}</strong></a>}
+  </nav>
+  <script>
+    document.querySelectorAll<HTMLPreElement>('.prose pre').forEach((pre) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.setAttribute('aria-label', 'Copy code to clipboard');
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(pre.querySelector('code')?.innerText ?? pre.innerText);
+          btn.textContent = 'Copied';
+        } catch { btn.textContent = 'Failed'; }
+        setTimeout(() => (btn.textContent = 'Copy'), 1500);
+      });
+      pre.appendChild(btn);
+    });
+  </script>
+</Base>

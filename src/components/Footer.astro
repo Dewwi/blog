@@ -1,0 +1,14 @@
+---
+import { config } from '../config';
+---
+<footer class="site-footer">
+  <p><strong>{config.name}</strong>: {config.tagline}</p>
+  <p class="footer-links">
+    <a href={config.links.github} rel="me noopener">GitHub</a>
+    <a href={config.links.linkedin} rel="me noopener">LinkedIn</a>
+    <a href={config.links.hashnode} rel="me noopener">Hashnode</a>
+    <a href="/rss.xml">RSS</a>
+    <a href={`mailto:${config.email}`}>Email</a>
+  </p>
+  <p class="small">© {new Date().getFullYear()} {config.name}. Written in London, by a human, with help.</p>
+</footer>

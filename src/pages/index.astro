@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { config } from '../config';
+import { getPosts } from '../lib/posts';
+
+const latest = (await getPosts()).slice(0, config.postsPerHomePage);
+---
+<Base description={config.bio} schema={[{ '@type': 'CollectionPage', '@id': `${config.url}/#home`, url: config.url, name: config.title, about: { '@id': `${config.url}/#person` }, isPartOf: { '@id': `${config.url}/#website` } }]}>
+  <section class="hero">
+    <h1>{config.name}</h1>
+    <p class="tagline">{config.tagline}</p>
+    <p class="bio">{config.bio} <a href="/about/">More about me →</a></p>
+  </section>
+  <div class="section-title"><h2>Latest writing</h2><a href="/blog/">All posts →</a></div>
+  {latest.length ? <PostList posts={latest} /> : <p>First post coming soon.</p>}
+  <Newsletter />
+</Base>

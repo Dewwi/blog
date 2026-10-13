@@ -1,0 +1,17 @@
+---
+import { config } from '../config';
+import ThemeToggle from './ThemeToggle.astro';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/blog/', label: 'Writing' },
+  { href: '/about/', label: 'About' },
+  { href: '/work-with-me/', label: 'Work with me' },
+];
+---
+<header class="site-header">
+  <a class="brand" href="/" aria-label={`${config.name}, home`}><span class="mark" aria-hidden="true">d.</span> {config.name}</a>
+  <nav aria-label="Main">
+    {nav.map((n) => <a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>)}
+    <ThemeToggle />
+  </nav>
+</header>

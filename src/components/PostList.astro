@@ -1,0 +1,20 @@
+---
+import { formatDate, readingTime, slugifyTag, type Post } from '../lib/posts';
+const { posts } = Astro.props as { posts: Post[] };
+---
+<ul class="post-list">
+  {posts.map((p) => (
+    <li>
+      <article>
+        <p class="meta">
+          <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
+          <span aria-hidden="true">·</span> {readingTime(p.body)} min read
+          {import.meta.env.DEV && p.data.draft && <strong class="draft"> DRAFT</strong>}
+        </p>
+        <h3><a href={`/blog/${p.id}/`}>{p.data.title}</a></h3>
+        <p>{p.data.description}</p>
+        <p class="tags">{p.data.tags.map((t) => <a href={`/tags/${slugifyTag(t)}/`}>#{t}</a>)}</p>
+      </article>
+    </li>
+  ))}
+</ul>

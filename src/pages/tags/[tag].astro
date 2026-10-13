@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, slugifyTag, tagCounts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return [...tagCounts(posts)].map(([slug, t]) => ({
+    params: { tag: slug },
+    props: { label: t.label, posts: posts.filter((p) => p.data.tags.some((x) => slugifyTag(x) === slug)) },
+  }));
+}
+const { slug } = { slug: Astro.params.tag };
+const { label, posts } = Astro.props;
+---
+<Base
+  title={`Posts tagged “${label}”`}
+  description={`${posts.length} post${posts.length === 1 ? '' : 's'} on ${label} by David Lequin.`}
+  breadcrumbs={[{ name: 'Tags', path: '/tags/' }, { name: label, path: `/tags/${slug}/` }]}
+>
+  <p class="breadcrumbs"><a href="/tags/">All tags</a></p>
+  <h1>#{label}</h1>
+  <PostList posts={posts} />
+</Base>

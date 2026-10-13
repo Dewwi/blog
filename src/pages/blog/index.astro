@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, tagCounts } from '../../lib/posts';
+import { config } from '../../config';
+
+const posts = await getPosts();
+const tags = [...tagCounts(posts)];
+---
+<Base
+  title="Writing"
+  description="Posts on AI agent infrastructure, running agents on Kubernetes, evals and observability, data engineering for AI, and production war stories."
+  breadcrumbs={[{ name: 'Writing', path: '/blog/' }]}
+  schema={[{ '@type': 'Blog', '@id': `${config.url}/blog/#blog`, url: `${config.url}/blog/`, name: `${config.title}: Writing`, author: { '@id': `${config.url}/#person` }, isPartOf: { '@id': `${config.url}/#website` } }]}
+>
+  <h1>Writing</h1>
+  <p>Production notes on AI agents: what works, what doesn't, and what caught fire.</p>
+  <ul class="tag-cloud" aria-label="Browse by tag">
+    {tags.map(([slug, t]) => <li><a href={`/tags/${slug}/`}>#{t.label} ({t.count})</a></li>)}
+  </ul>
+  <PostList posts={posts} />
+</Base>

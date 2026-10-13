@@ -1,0 +1,13 @@
+---
+interface Heading { depth: number; slug: string; text: string }
+const { headings } = Astro.props as { headings: Heading[] };
+const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+{items.length >= 3 && (
+  <details class="toc" open>
+    <summary>On this page</summary>
+    <ol>
+      {items.map((h) => <li style={h.depth === 3 ? 'margin-left:1.1rem;list-style:circle' : undefined}><a href={`#${h.slug}`}>{h.text}</a></li>)}
+    </ol>
+  </details>
+)}
