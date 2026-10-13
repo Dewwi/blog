@@ -11,7 +11,7 @@ export async function GET(context: APIContext) {
   const posts = await getPosts();
   return rss({
     title: config.title,
-    description: config.tagline,
+    description: config.bio,
     site: config.url,
     trailingSlash: true,
     xmlns: { atom: 'http://www.w3.org/2005/Atom', content: 'http://purl.org/rss/1.0/modules/content/' },

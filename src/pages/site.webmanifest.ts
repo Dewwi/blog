@@ -5,7 +5,7 @@ export const GET = () =>
   new Response(JSON.stringify({
     name: config.title,
     short_name: 'D. Lequin',
-    description: config.tagline,
+    description: config.bio,
     start_url: '/',
     display: 'browser',
     background_color: brand.paper,

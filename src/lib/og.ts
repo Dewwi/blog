@@ -35,7 +35,7 @@ export async function renderOg(opts: { title: string; kicker?: string; footer?: 
       opts.kicker ? h('div', { fontFamily: 'Mono', fontSize: 28, color: brand.accent }, opts.kicker) : h('div', {}, ''),
       h('div', { fontSize: long ? 64 : 84, fontWeight: 700, lineHeight: 1.08, letterSpacing: -1.5 }, opts.title),
     ]),
-    h('div', { fontSize: 32, color: brand.muted }, opts.footer ?? config.tagline),
+    h('div', { fontSize: 32, color: brand.muted }, opts.footer ?? ''),
   ]);
   const tree = h('div', { width: 1200, height: 630, background: brand.paper, color: brand.ink, fontFamily: 'Fraunces' }, [
     h('div', { width: 20, height: 630, background: brand.accent }),

@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { config } from '../config';
+---
+<Base
+  title="Contact"
+  description={`Get in touch with ${config.name}.`}
+  breadcrumbs={[{ name: 'Contact', path: '/contact/' }]}
+  schema={[{ '@type': 'ContactPage', '@id': `${config.url}/contact/#page`, url: `${config.url}/contact/`, name: `Contact ${config.name}`, mainEntity: { '@id': `${config.url}/#person` }, isPartOf: { '@id': `${config.url}/#website` } }]}
+>
+  <h1>Contact</h1>
+  <p><a href={`mailto:${config.email}`}>{config.email}</a></p>
+</Base>

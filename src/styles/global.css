@@ -1,22 +1,22 @@
 :root {
-  --paper: #fbf6ec;
-  --paper-2: #f3ecdd;
-  --ink: #1c1917;
-  --muted: #6b645d;
-  --rule: #ddd3c0;
-  --accent: #c2410c;
+  --paper: #f8f7f3;
+  --paper-2: #eeede6;
+  --ink: #15191d;
+  --muted: #5d646c;
+  --rule: #dad9d0;
+  --accent: #0f766e;
   --accent-ink: #fff;
-  --code-bg: #f6f0e2;
+  --code-bg: #efeee7;
   --serif: 'Newsreader Variable', Georgia, serif;
   --display: 'Fraunces Variable', Georgia, serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  --measure: 40rem;
+  --measure: 46rem;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) { --paper:#14110f; --paper-2:#1d1916; --ink:#efe8dc; --muted:#a39a8e; --rule:#342f2a; --accent:#fb923c; --accent-ink:#14110f; --code-bg:#1b1714; color-scheme: dark; }
+  :root:not([data-theme='light']) { --paper:#0e1214; --paper-2:#161c1f; --ink:#e8ecec; --muted:#9aa4a8; --rule:#263034; --accent:#5eead4; --accent-ink:#0e1214; --code-bg:#141a1d; color-scheme: dark; }
 }
-:root[data-theme='dark'] { --paper:#14110f; --paper-2:#1d1916; --ink:#efe8dc; --muted:#a39a8e; --rule:#342f2a; --accent:#fb923c; --accent-ink:#14110f; --code-bg:#1b1714; color-scheme: dark; }
+:root[data-theme='dark'] { --paper:#0e1214; --paper-2:#161c1f; --ink:#e8ecec; --muted:#9aa4a8; --rule:#263034; --accent:#5eead4; --accent-ink:#0e1214; --code-bg:#141a1d; color-scheme: dark; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 1.5rem; }
@@ -53,7 +53,8 @@ h3 { font-size: 1.3rem; margin: 2rem 0 0.4rem; }
 /* home hero */
 .hero { padding: 2.5rem 0 1rem; }
 .hero .tagline { font: italic 400 clamp(1.3rem, 4vw, 1.7rem)/1.3 var(--display); color: var(--accent); margin: 0 0 1.2rem; }
-.hero .bio { max-width: 34rem; }
+.hero .bio { max-width: 36rem; text-wrap: pretty; }
+.nowrap { white-space: nowrap; }
 .section-title { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--rule); margin: 3rem 0 0; padding-bottom: 0.5rem; }
 .section-title h2 { margin: 0; font-size: 1.1rem; font-family: var(--mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
 .section-title a { font: 0.9rem var(--mono); }

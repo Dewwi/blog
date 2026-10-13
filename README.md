@@ -67,11 +67,9 @@ Review the draft on dev.to and publish it there. Do this *after* the post is liv
 
 **dev.to, RSS import:** Settings → Extensions → *Publishing to DEV from RSS* → `https://david.lequin.dev/rss.xml`. Imports arrive as drafts with the canonical URL set automatically.
 
-**Hashnode:** Dashboard → Import → *Import from RSS* (or paste the post by hand). On each article open *Article settings → Are you republishing? → Set canonical URL / "Originally published at"* and enter `https://david.lequin.dev/blog/<slug>/`.
-
 ## SEO and sharing
 
-Built in: canonical on every page (always the production domain), Open Graph and Twitter large-image cards, 1200×630 PNG social cards (default + per post), JSON-LD (`Person`, `WebSite`, `Blog`, `BlogPosting`, `BreadcrumbList`, `ProfilePage`, `ProfessionalService`), `rel="me"` identity links, RSS autodiscovery, sitemap (`/sitemap-index.xml`), `robots.txt`, favicon set (`.ico`, SVG, Apple touch, Android/maskable) and web manifest, light/dark `theme-color`.
+Built in: canonical on every page (always the production domain), Open Graph and Twitter large-image cards, 1200×630 PNG social cards (default + per post), JSON-LD (`Person`, `WebSite`, `Blog`, `BlogPosting`, `BreadcrumbList`, `ProfilePage`, `ContactPage`), `rel="me"` identity links, RSS autodiscovery, sitemap (`/sitemap-index.xml`), `robots.txt`, favicon set (`.ico`, SVG, Apple touch, Android/maskable) and web manifest, light/dark `theme-color`.
 
 After launch: add `https://david.lequin.dev/` as a **Domain/URL-prefix property in Google Search Console** and submit `sitemap-index.xml`; do the same in Bing Webmaster Tools. Validate cards with the LinkedIn Post Inspector and a Rich Results Test.
 

@@ -3,14 +3,13 @@ export const config = {
   name: 'David Lequin',
   url: 'https://david.lequin.dev',
   title: 'David Lequin',
-  tagline: 'Agents are easy. Production is hard.',
-  bio: '10+ years wrangling data, now wrangling AI agents. Building cool stuff with Claude and writing up what works, what doesn\'t, and what caught fire. London.',
+  role: 'Data and AI engineer in London',
+  bio: 'Data engineer, then AI engineer in London. I build stuff with Claude and run agents on Kubernetes for a living.',
   location: 'London',
-  email: 'hello@lequin.dev', // placeholder: change to your real address
+  email: 'david@lequin.dev',
   links: {
     linkedin: 'https://www.linkedin.com/in/david-lequin/',
     github: 'https://github.com/Dewwi',
-    hashnode: 'https://hashnode.com/@dle',
   },
   topics: [
     'AI agent infrastructure',

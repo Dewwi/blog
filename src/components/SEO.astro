@@ -19,7 +19,7 @@ const {
   title,
   description = config.bio,
   image = '/og/default.png',
-  imageAlt = `${config.name}: ${config.tagline}`,
+  imageAlt = `${config.name}, ${config.role}`,
   type = 'website',
   published,
   modified,
@@ -31,7 +31,7 @@ const {
 
 const abs = (p: string) => new URL(p, config.url).href;
 const canonical = abs(Astro.url.pathname); // always the production domain, never the request host
-const fullTitle = title ? `${title} · ${config.name}` : `${config.name}: ${config.tagline}`;
+const fullTitle = title ? `${title} · ${config.name}` : `${config.name}: ${config.role}`;
 const imageUrl = abs(image);
 const sameAs = Object.values(config.links);
 
@@ -53,7 +53,7 @@ const graph: Record<string, unknown>[] = [
     '@id': `${config.url}/#website`,
     url: config.url,
     name: config.title,
-    description: config.tagline,
+    description: config.bio,
     inLanguage: 'en-GB',
     publisher: { '@id': `${config.url}/#person` },
   },
@@ -83,7 +83,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 <meta property="og:site_name" content={config.title} />
 <meta property="og:locale" content="en_GB" />
 <meta property="og:type" content={type === 'article' ? 'article' : type === 'profile' ? 'profile' : 'website'} />
-<meta property="og:title" content={title ?? config.tagline} />
+<meta property="og:title" content={title ?? config.name} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={imageUrl} />
@@ -101,7 +101,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title ?? config.tagline} />
+<meta name="twitter:title" content={title ?? config.name} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
 <meta name="twitter:image:alt" content={imageAlt} />
@@ -111,8 +111,8 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#14110f" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f8f7f3" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0e1214" media="(prefers-color-scheme: dark)" />
 <meta name="color-scheme" content="light dark" />
 
 <!-- Feeds and identity -->
