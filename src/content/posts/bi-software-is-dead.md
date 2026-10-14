@@ -10,13 +10,13 @@ Like a lot of companies, we pay for Looker. It costs about $150k a year, and rou
 
 In February, one of us built a thing on the side to host HTML files. It took an afternoon. Eight months later about as many people use it each week as use Looker, and Looker's weekly users are down by a third.
 
-All of this was before Anthropic released [Claude Dashboards](https://claude.com/resources/articles/dashboards-and-motion) in beta on 8 October 2026.
-
 In February, Anthropic shipped a handful of plugins for Claude Cowork, and software stocks [lost $285 billion in four days](https://www.deeplearning.ai/the-batch/claude-cowork-plugins-trigger-a-saas-stock-selloff-but-partnerships-lead-to-slight-rebound). For a week at least, Wall Street decided that a lot of SaaS could now be built instead of bought.
 
 Pieter Levels keeps tweeting that [software is dead](https://x.com/levelsio/status/2109262337500705094). In July he [cancelled and vibecoded 100% of his SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). ["AI is killing B2B SaaS"](https://news.ycombinator.com/item?id=46888441) is [all the industry is talking about](https://news.ycombinator.com/item?id=46268452).
 
 "SaaS is dead" sounds like a slogan until you watch it happen to one product.
+
+Note: all of this was before Anthropic released [Claude Dashboards](https://claude.com/resources/articles/dashboards-and-motion) in beta on 8 October 2026, which makes BI software even less relevant today.
 
 <div class="pair">
 <div class="chart"><h3>"Build it yourself" on Hacker News</h3><svg id="hn1" viewBox="0 0 345 244"></svg></div>
@@ -88,9 +88,9 @@ We haven't moved everything. Some teams still live in Looker, and some of its da
 
 We use our analyst agent as a proxy here, because it's the one builder we can measure exactly. Every run is logged with its tokens and its cost, and every publish links back to the run that made it.
 
-Each dashboard takes the agent about 2 million tokens, from the first question to the finished page. When we moved it to Opus 5.5, the cost of a dashboard dropped from about $3.90 to about $1.60. The agent does the same work; the tokens just got cheaper. That's the real story: building software now costs whatever tokens cost, and that price keeps falling.
+Each dashboard takes the agent around a million tokens, from the first question to the finished page. When we moved it to Opus 5.5, the cost of a dashboard dropped from about $2.50 to about $0.50. The agent does the same work; the tokens just got cheaper. That's the real story: building software now costs whatever tokens cost, and that price keeps falling.
 
-<blockquote class="pull">A BI tool is mostly a way to turn a query into a picture, and a picture now costs about $1.60 of tokens. It gets hard to justify a $150k licence for that part.</blockquote>
+<blockquote class="pull">A BI tool is mostly a way to turn a query into a picture, and a picture now costs about $0.50 of tokens. It gets hard to justify a $150k licence for that part.</blockquote>
 
 <div class="chart"><h3>Weekly dashboard cost</h3><svg id="run" viewBox="0 0 720 280"></svg></div>
 
