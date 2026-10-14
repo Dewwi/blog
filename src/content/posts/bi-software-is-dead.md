@@ -10,6 +10,8 @@ Like a lot of companies, we pay for Looker. It costs about $150k a year, and rou
 
 In February, one of us built a thing on the side to host HTML files. It took an afternoon. Eight months later about as many people use it each week as use Looker, and Looker's weekly users are down by a third.
 
+All of this was before Anthropic released [Claude Dashboards](https://claude.com/resources/articles/dashboards-and-motion) in beta on 8 October 2026.
+
 In February, Anthropic shipped a handful of plugins for Claude Cowork, and software stocks [lost $285 billion in four days](https://www.deeplearning.ai/the-batch/claude-cowork-plugins-trigger-a-saas-stock-selloff-but-partnerships-lead-to-slight-rebound). For a week at least, Wall Street decided that a lot of SaaS could now be built instead of bought.
 
 Pieter Levels keeps tweeting that [software is dead](https://x.com/levelsio/status/2109262337500705094). In July he [cancelled and vibecoded 100% of his SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). ["AI is killing B2B SaaS"](https://news.ycombinator.com/item?id=46888441) is [all the industry is talking about](https://news.ycombinator.com/item?id=46268452).
