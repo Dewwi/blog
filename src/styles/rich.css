@@ -64,3 +64,9 @@
   .prose .bill .row { grid-template-columns: 1fr; } .prose .bill .keys { margin-left: 0; }
   .prose .tiles { grid-template-columns: 1fr; } .prose blockquote.pull { font-size: 1.3rem; }
 }
+
+/* side-by-side screenshots */
+.prose .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.prose .vs-grid img { width: 100%; height: auto; display: block; border: 1px solid var(--rule, rgba(128,128,128,.25)); border-radius: 6px; }
+.prose .vs-grid p { text-align: center; font: 0.82rem/1.5 var(--ui); color: var(--ink2); margin: 0.5rem 0 0; }
+@media (max-width: 40rem) { .prose .vs-grid { grid-template-columns: 1fr; } }

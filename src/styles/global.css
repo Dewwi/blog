@@ -8,7 +8,7 @@
   --accent-ink: #fff;
   --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --serif: Charter, 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --mono: 'Iosevka', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --measure: 46rem;
   color-scheme: light;
 }
