@@ -6,9 +6,9 @@ import { brand, logoSvg } from './brand';
 
 const font = (f: string) => readFileSync(`node_modules/@fontsource/${f}`);
 const fonts = [
-  { name: 'Fraunces', data: font('fraunces/files/fraunces-latin-700-normal.woff'), weight: 700 as const, style: 'normal' as const },
-  { name: 'Fraunces', data: font('fraunces/files/fraunces-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
-  { name: 'Mono', data: font('jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Inter', data: font('inter/files/inter-latin-800-normal.woff'), weight: 800 as const, style: 'normal' as const },
+  { name: 'Inter', data: font('inter/files/inter-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Inter', data: font('inter/files/inter-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
 ];
 
 const h = (type: string, style: Record<string, unknown>, children?: unknown) => ({
@@ -27,17 +27,17 @@ export async function renderOg(opts: { title: string; kicker?: string; footer?: 
     h('div', { alignItems: 'center', justifyContent: 'space-between' }, [
       h('div', { alignItems: 'center', gap: 20 }, [
         { type: 'img', props: { src: logo, width: 72, height: 72 } },
-        h('div', { fontSize: 34, fontWeight: 700 }, config.name),
+        h('div', { fontSize: 34, fontWeight: 600 }, config.name),
       ]),
-      h('div', { fontFamily: 'Mono', fontSize: 26, color: brand.muted }, new URL(config.url).host),
+      h('div', { fontSize: 26, color: brand.muted }, new URL(config.url).host),
     ]),
     h('div', { flexDirection: 'column', gap: 24 }, [
-      opts.kicker ? h('div', { fontFamily: 'Mono', fontSize: 28, color: brand.accent }, opts.kicker) : h('div', {}, ''),
-      h('div', { fontSize: long ? 64 : 84, fontWeight: 700, lineHeight: 1.08, letterSpacing: -1.5 }, opts.title),
+      opts.kicker ? h('div', { fontSize: 28, fontWeight: 600, color: brand.accent }, opts.kicker) : h('div', {}, ''),
+      h('div', { fontSize: long ? 64 : 84, fontWeight: 800, lineHeight: 1.1, letterSpacing: -2 }, opts.title),
     ]),
     h('div', { fontSize: 32, color: brand.muted }, opts.footer ?? ''),
   ]);
-  const tree = h('div', { width: 1200, height: 630, background: brand.paper, color: brand.ink, fontFamily: 'Fraunces' }, [
+  const tree = h('div', { width: 1200, height: 630, background: brand.paper, color: brand.ink, fontFamily: 'Inter' }, [
     h('div', { width: 20, height: 630, background: brand.accent }),
     body,
   ]);

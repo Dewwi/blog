@@ -3,13 +3,14 @@ import Base from './Base.astro';
 import TOC from '../components/TOC.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { config } from '../config';
-import { formatDate, readingTime, slugifyTag, postUrl, type Post } from '../lib/posts';
+import '../styles/rich.css';
+import { formatDate, readingTime, slugifyTag, postUrl, wordCount, type Post } from '../lib/posts';
 
 interface Props { post: Post; headings: { depth: number; slug: string; text: string }[]; prev?: Post; next?: Post }
 const { post, headings, prev, next } = Astro.props;
 const { title, description, date, updated, tags } = post.data;
 const url = postUrl(post);
-const words = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const words = wordCount(post.body);
 const image = `/og/${post.id}.png`;
 const schema = [{
   '@type': 'BlogPosting',
@@ -50,10 +51,10 @@ const schema = [{
       </p>
       <h1>{title}</h1>
       <p class="lede">{description}</p>
-      <p class="tags">{tags.map((t) => <a href={`/tags/${slugifyTag(t)}/`}>#{t}</a>)}</p>
     </header>
     <TOC headings={headings} />
     <div class="prose"><slot /></div>
+    {tags.length > 0 && <p class="tags post-tags">{tags.map((t) => <a href={`/tags/${slugifyTag(t)}/`}>#{t}</a>)}</p>}
   </article>
   <Newsletter />
   <nav class="post-nav" aria-label="More posts">

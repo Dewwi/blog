@@ -1,9 +1,9 @@
 // Brand constants shared by CSS-free contexts (OG images, icons, manifest).
 export const brand = {
-  paper: '#f8f7f3',
-  ink: '#15191d',
-  accent: '#0f766e',
-  muted: '#5d646c',
+  paper: '#fcfcfb',
+  ink: '#0b0b0b',
+  accent: '#2a78d6',
+  muted: '#52514e',
 };
 
 /** Geometric "D." monogram: no font dependency, so it renders identically everywhere. */

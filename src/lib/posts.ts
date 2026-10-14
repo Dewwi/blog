@@ -14,10 +14,17 @@ export const postUrl = (post: Post) => `${config.url}/blog/${post.id}/`;
 export const slugifyTag = (tag: string) =>
   tag.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-export function readingTime(body = ''): number {
-  const words = body.replace(/```[\s\S]*?```/g, ' ').split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / 220));
+/** Words of prose: code fences, scripts and HTML/SVG markup don't count. */
+export function wordCount(body = ''): number {
+  return body
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/<(script|style)[\s\S]*?<\/\1>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean).length;
 }
+
+export const readingTime = (body = '') => Math.max(1, Math.round(wordCount(body) / 220));
 
 export function tagCounts(posts: Post[]): Map<string, { label: string; count: number }> {
   const map = new Map<string, { label: string; count: number }>();
