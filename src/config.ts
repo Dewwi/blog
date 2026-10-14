@@ -16,7 +16,6 @@ export const config = {
     'Running agents on Kubernetes',
     'Evals and observability',
     'Data engineering for AI',
-    'Honest production war stories',
   ],
   buttondown: { username: 'dewwi' }, // placeholder: your Buttondown username
   analytics: {
