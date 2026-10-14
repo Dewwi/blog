@@ -4,6 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { basename } from 'node:path';
 import { parse } from 'yaml';
+import { svgsToImages, flattenFigures } from '../src/lib/svg-images.mjs';
 
 const SITE = 'https://david.lequin.dev';
 const args = process.argv.slice(2);
@@ -31,7 +32,12 @@ const slug = basename(file).replace(/\.mdx?$/, '');
 const canonical = `${SITE}/blog/${slug}/`;
 
 // Site-relative links and images must be absolute on dev.to.
-const body = match[2].trim().replace(/(\]\()\/(?!\/)/g, `$1${SITE}/`);
+// Inline <svg>/JS charts become the PNGs from render-svgs.mjs; site-relative src/href also made absolute.
+const body = flattenFigures(svgsToImages(match[2].trim(), slug, SITE))
+  .replace(/<script\b[\s\S]*?<\/script>\s*/g, '')
+  .replace(/<div id="tip"><\/div>\s*/g, '')
+  .replace(/(\]\()\/(?!\/)/g, `$1${SITE}/`)
+  .replace(/(src=")\/(?!\/)/g, `$1${SITE}/`);
 
 // dev.to allows max 4 tags, lowercase alphanumeric only.
 const tags = (fm.tags ?? []).map((t) => String(t).toLowerCase().replace(/[^a-z0-9]/g, '')).filter(Boolean).slice(0, 4);

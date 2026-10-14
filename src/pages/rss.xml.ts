@@ -4,6 +4,7 @@ import sanitizeHtml from 'sanitize-html';
 import type { APIContext } from 'astro';
 import { config } from '../config';
 import { getPosts, postUrl } from '../lib/posts';
+import { svgsToImages, flattenFigures } from '../lib/svg-images.mjs';
 
 const md = new MarkdownIt({ html: true, linkify: true });
 
@@ -23,8 +24,9 @@ export async function GET(context: APIContext) {
       link: postUrl(post),
       categories: post.data.tags,
       author: `${config.email} (${config.name})`,
-      // Full body, not an excerpt, with relative URLs made absolute for feed readers and importers.
-      content: sanitizeHtml(md.render(post.body ?? '').replace(/(href|src)="\/(?!\/)/g, `$1="${config.url}/`), {
+      // Full body, not an excerpt. Relative URLs made absolute; inline <svg>/JS charts swapped for pre-rendered PNGs
+      // (npm run render-svgs) because feed readers and importers can't use them.
+      content: sanitizeHtml(flattenFigures(md.render(svgsToImages(post.body ?? '', post.id, config.url))).replace(/(href|src)="\/(?!\/)/g, `$1="${config.url}/`), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'h1', 'h2', 'figure', 'figcaption', 'details', 'summary']),
         allowedAttributes: { ...sanitizeHtml.defaults.allowedAttributes, img: ['src', 'alt', 'title', 'width', 'height'], '*': ['id'] },
       }),
