@@ -1,5 +1,5 @@
 ---
-title: "BI software is dead, apparently"
+title: "We're replacing a $150k Looker with a bucket of HTML files"
 description: "BI Software is dead, apparently"
 date: 2026-10-14
 tags: ["data-engineering", "ai-agents", "claude"]
