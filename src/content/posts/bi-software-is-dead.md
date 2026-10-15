@@ -89,7 +89,7 @@ That's the whole bill on our side: 8 months, 3 engineers doing it on the side, p
 
 <div class="chart"><h3>People who used it, per week</h3><svg id="wau" viewBox="0 0 720 330"></svg></div>
 
-Looker sat at about 230 people a week from October to March, then slid down to about 155, while we went from nothing to 156 over the same months. In the last 30 days 228 people used our platform and 217 used Looker.
+Looker's usage leaked rather than crashed. We haven't moved everything: some teams still live in Looker, and some of its dashboards have no replacement yet. What moved people is that building a dashboard stopped being expensive, so let's put a number on it.
 
 We use our analyst agent as a proxy here, because it's the one builder we can measure exactly. Every run is logged with its tokens and its cost, and every publish links back to the run that made it.
 
@@ -141,8 +141,6 @@ It's the same build-or-buy question, and most of the answer carries over. It's h
 But the dashboard platform was never the whole point for us. Ours talks to our agent control plane, to our analytics platform, and to Slack through custom workflows. It publishes, schedules and permissions the way we want. A product that sits next to all that is a different thing from a tool that's part of it, and the gap shows up in exactly those joins.
 
 So it's still the same answer. If you need software that fits what you do, and you already have a platform to run it on and a dedicated team, build it, unless the moat is scale.
-
-<footer class="note"><b>How it's measured.</b> Weekly users: distinct people per week (weeks start Monday, current partial week left out). Looker comes from Snowflake query history, which tags every Looker query with a Looker user; ours comes from our own event log. The 30-day user counts for Looker come from its System Activity. Agent cost is the logged cost of every agent run in the conversations that published or rebuilt a dashboard; publishes are linked to runs exactly from 23 September and by run timing before that. Hacker News counts come from the open-index/hacker-news dataset (January 2025 to August 2026), matching comment text for each phrase. The Looker price is in line with the $150k average across 355 Looker deals reported by <a href="https://coefficient.io/looker-pricing">Vendr via Coefficient</a>.</footer>
 
 <div id="tip"></div>
 <script src="/posts/bi-software-is-dead/charts.js" defer></script>
