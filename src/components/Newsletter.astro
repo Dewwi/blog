@@ -5,7 +5,7 @@ const action = `https://buttondown.com/api/emails/embed-subscribe/${username}`;
 ---
 <section class="newsletter" aria-labelledby="nl-title">
   <h2 id="nl-title">Get new posts by email</h2>
-  <p>Honest notes on running AI agents in production. No spam, unsubscribe any time.</p>
+  <p>No spam, unsubscribe any time.</p>
   <form action={action} method="post" target="popupwindow" onsubmit={`window.open('https://buttondown.com/${username}', 'popupwindow')`} class="nl-form">
     <label class="visually-hidden" for="bd-email">Email address</label>
     <input type="email" name="email" id="bd-email" placeholder="you@example.com" required autocomplete="email" />
