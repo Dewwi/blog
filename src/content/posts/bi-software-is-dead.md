@@ -81,21 +81,15 @@ There were 4 problems to solve.
 
 **Content management.** This part we vibe-coded in about a week, and it barely needed any design. For spaces, folders and sharing we copied Google Drive, because everybody already knows how Google Drive works: viewer, editor and owner, grants flow down the folder tree, and the strongest grant wins. Versions are stored by content hash, and restoring one gives you a draft. Then search, likes, scheduled exports, and teams synced from the HR system every hour. Compare that with the security model, which is where nearly all the real thinking went.
 
-After that, people started to use it in ways we hadn't planned for. Tag Claude in a Slack thread and it builds and publishes its own dashboard. Our analyst agent does the same, some repos publish from CI, and most people publish from their own Claude, so their dashboards look like them.
-
 <blockquote class="pull">325 commits, about 74,000 lines of code (20,000 of them tests), and roughly $6.4k of Claude tokens.</blockquote>
 
 That's the whole bill on our side: 8 months, 3 engineers doing it on the side, plus a few friends who sent PRs. Claude wrote most of the code. We did the whiteboarding, argued a lot, and reviewed everything.
 
-## Meanwhile, Looker lost a third of its users
+## $0.50 a dashboard, what does that mean for BI?
 
 <div class="chart"><h3>People who used it, per week</h3><svg id="wau" viewBox="0 0 720 330"></svg></div>
 
-Looker's usage leaked rather than crashed. It sat at about 230 people a week from October to March, then slid down to about 155, while we went from nothing to 156 over the same months. In the last 30 days 228 people used our platform and 217 used Looker.
-
-We haven't moved everything. Some teams still live in Looker, and some of its dashboards have no replacement yet.
-
-## $0.50 a dashboard, what does that mean for BI?
+Looker sat at about 230 people a week from October to March, then slid down to about 155, while we went from nothing to 156 over the same months. In the last 30 days 228 people used our platform and 217 used Looker.
 
 We use our analyst agent as a proxy here, because it's the one builder we can measure exactly. Every run is logged with its tokens and its cost, and every publish links back to the run that made it.
 
