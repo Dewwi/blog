@@ -22,7 +22,7 @@
 .prose figure .sk { width: 100%; height: auto; display: block; padding: 0.5rem 0; }
 :root[data-theme='dark'] .prose figure .sk { filter: invert(0.9) hue-rotate(180deg); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .prose figure .sk { filter: invert(0.9) hue-rotate(180deg); } }
-.prose figcaption { font: 0.82rem/1.5 var(--ui); color: var(--ink2); margin: 0.5rem 3.75rem 0; }
+.prose figcaption { text-align: center; font: 0.82rem/1.5 var(--ui); color: var(--ink2); margin: 0.5rem 3.75rem 0; }
 
 /* charts (drawn at runtime into the <svg>) */
 .prose .chart { margin: 2rem 0; }

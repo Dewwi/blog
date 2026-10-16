@@ -4,10 +4,34 @@ const { headings } = Astro.props as { headings: Heading[] };
 const items = headings.filter((h) => h.depth === 2);
 ---
 {items.length >= 3 && (
-  <details class="toc" open>
-    <summary>On this page</summary>
-    <ol>
-      {items.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
-    </ol>
-  </details>
+  <aside class="toc-side">
+    <details class="toc" open>
+      <summary>On this page</summary>
+      <ol>
+        {items.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+      </ol>
+    </details>
+  </aside>
 )}
+
+<script>
+  // Sidebar on wide screens (always open); collapsed inline list on small ones, closing after a tap.
+  const toc = document.querySelector<HTMLDetailsElement>('.toc');
+  if (toc) {
+    const wide = window.matchMedia('(min-width: 80rem)');
+    const sync = () => { toc.open = wide.matches; };
+    sync();
+    wide.addEventListener('change', sync);
+    toc.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => { if (!wide.matches) toc.open = false; }));
+    // Highlight the section being read.
+    const links = new Map([...toc.querySelectorAll<HTMLAnchorElement>('a')].map((a) => [decodeURIComponent(a.hash.slice(1)), a]));
+    const heads = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const mark = () => {
+      let cur = heads[0];
+      for (const h of heads) if (h.getBoundingClientRect().top < window.innerHeight * 0.3) cur = h;
+      links.forEach((a, id) => a.toggleAttribute('aria-current', id === cur?.id && window.scrollY > 0));
+    };
+    window.addEventListener('scroll', mark, { passive: true });
+    mark();
+  }
+</script>

@@ -42,7 +42,6 @@ const schema = [{
   schema={schema}
 >
   <article>
-    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/">Writing</a></nav>
     <header class="post-head">
       <p class="meta">
         <time datetime={date.toISOString()}>{formatDate(date)}</time>
@@ -52,8 +51,10 @@ const schema = [{
       <h1>{title}</h1>
       <p class="lede">{description}</p>
     </header>
-    <TOC headings={headings} />
-    <div class="prose"><slot /></div>
+    <div class="post-body">
+      <TOC headings={headings} />
+      <div class="prose"><slot /></div>
+    </div>
     {tags.length > 0 && <p class="tags post-tags">{tags.map((t) => <a href={`/tags/${slugifyTag(t)}/`}>#{t}</a>)}</p>}
   </article>
   <Newsletter />
