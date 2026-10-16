@@ -27,7 +27,7 @@ const gc = config.analytics.goatcounter;
     </script>
     <SEO {...props} />
     <slot name="head" />
-    {gc.enabled && <script is:inline data-goatcounter={`https://${gc.code}.goatcounter.com/count`} async src="//gc.zgo.at/count.js"></script>}
+    {gc.enabled && <script is:inline data-goatcounter={`https://${gc.code}.goatcounter.com/count`} async src="https://gc.zgo.at/count.js"></script>}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

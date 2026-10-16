@@ -19,7 +19,7 @@ export const config = {
   ],
   buttondown: { username: 'dewwi' }, // placeholder: your Buttondown username
   analytics: {
-    goatcounter: { enabled: false, code: 'your-code' }, // https://your-code.goatcounter.com
+    goatcounter: { enabled: true, code: 'dlequin' }, // https://dlequin.goatcounter.com
   },
   postsPerHomePage: 5,
 } as const;
