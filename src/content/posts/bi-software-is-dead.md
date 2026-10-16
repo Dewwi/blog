@@ -134,7 +134,7 @@ The bill above also leaves out the biggest cost, which is us: 3 engineers spendi
 
 <blockquote class="pull">If you already have a solid platform to build on and a team that knows it well, the rest is mostly Claude's time, and Claude's time is cheap.</blockquote>
 
-I'd argue the line is scale. AWS and Snowflake sell things nobody can vibe-code: data centres, storage at petabyte prices, compute that's cheap because millions of other customers share it. I think BI is particularly exposed because a lot of its value, at least for us, was in building and presenting dashboards. Claude can now do that for pennies. Products with a real scale advantage are a different story, but I wouldn't be surprised if more companies start replacing parts of their BI stack themselves.
+AWS and Snowflake sell things nobody can vibe-code: data centres, storage at petabyte prices, compute that's cheap because millions of other customers share it. I think BI is particularly exposed because a lot of its value, at least for us, was in building and presenting dashboards. Claude can now do that for pennies. Products with a real scale advantage are a different story, but I wouldn't be surprised if more companies start replacing parts of their BI stack themselves.
 
 ## What about Claude Dashboards?
 
