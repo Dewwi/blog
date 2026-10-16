@@ -6,7 +6,7 @@ tags: ["data-engineering", "ai-agents", "claude"]
 draft: false
 ---
 
-Like a lot of companies, we pay for Looker. About $150k a year (the average Looker licence price)<sup><a href="#fn1" id="r1">1</a></sup>, roughly 300 seats. We are 3 data platform engineers at a company of about 500 people, and most of our week goes on the unglamorous stuff: keeping Snowflake fed, babysitting a dbt project that passed 2,000 models a while ago, and running the Airflow, Airbyte, DataHub and Kubernetes plumbing underneath it all.
+Like a lot of companies, we pay for Looker. Let's say $150k a year, the average Looker licence<sup><a href="#fn1" id="r1">1</a></sup>, roughly 300 seats. We are 3 data platform engineers at a company of about 500 people, and most of our week goes on the unglamorous stuff: keeping Snowflake fed, babysitting a dbt project that passed 2,000 models a while ago, and running the Airflow, Airbyte, DataHub and Kubernetes plumbing underneath it all.
 
 In February, one of us built a thing on the side to host HTML files. It took an afternoon. 8 months later about as many people use it each week as use Looker, and Looker's weekly users are down by a third.
 
