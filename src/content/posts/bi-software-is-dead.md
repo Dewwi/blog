@@ -10,7 +10,7 @@ Like a lot of companies, we pay for Looker. About $150k a year<sup><a href="#fn1
 
 In February, one of us built a thing on the side to host HTML files. It took an afternoon. 8 months later about as many people use it each week as use Looker, and Looker's weekly users are down by a third.
 
-Tech influencers keep posting about [software being dead](https://x.com/levelsio/status/2109262337500705094), and some say they've [cancelled and vibecoded all their SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). You can't spend 5 minutes on Hacker News without someone arguing that AI is going to kill B2B SaaS.<sup><a href="#fn2" id="r2">2</a></sup>
+Tech influencers keep posting about [software being dead](https://x.com/levelsio/status/2109262337500705094), and some say they've [cancelled and vibecoded all their SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). They say AI is going to kill B2B SaaS.<sup><a href="#fn2" id="r2">2</a></sup>
 
 SaaS is dead, apparently. Can we replace our BI tool?
 
