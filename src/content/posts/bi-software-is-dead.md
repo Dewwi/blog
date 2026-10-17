@@ -8,7 +8,7 @@ draft: false
 
 Like a lot of companies, we pay for Looker. About $150k a year<sup><a href="#fn1" id="r1">1</a></sup>, roughly 300 seats. We are 3 data platform engineers at a company of about 500 people, and most of our week goes on the unglamorous stuff: keeping Snowflake fed, babysitting a dbt project that passed 2,000 models a while ago, and running the Airflow, Airbyte, DataHub and Kubernetes plumbing underneath it all.
 
-In February, one of us built a thing on the side to host HTML files. It took an afternoon. 8 months later about as many people use it each week as use Looker, and Looker's weekly users are down by a third.
+In February, one of us built a thing on the side to host HTML files. It took an afternoon. 8 months later, and it’s already got as many weekly users as Looker in our company, maybe even more and Looker’s down a third.
 
 Tech influencers keep posting about [software being dead](https://x.com/levelsio/status/2109262337500705094), and some say they've [cancelled and vibecoded all their SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). They say AI is going to kill B2B SaaS.<sup><a href="#fn2" id="r2">2</a></sup>
 
