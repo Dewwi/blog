@@ -38,7 +38,7 @@ Turns out, we didn't need to write a permission model. Snowflake already had one
 
 <blockquote class="pull">People loved it, for a reason that's embarrassing for the BI industry: the dashboards actually looked good.</blockquote>
 
-A Looker tile is a box with a fixed list of chart types and a fixed set of colours, and it looks like every other Looker tile ever made.
+A Looker tile is a box with a fixed list of chart types and a fixed set of colours, and it looks like every other Looker tile ever made. Ugly, and no personality. 
 
 <figure class="vs">
 <div class="vs-grid">
