@@ -6,11 +6,11 @@ tags: ["data-engineering", "ai-agents", "claude"]
 draft: false
 ---
 
-Like a lot of companies, we pay for Looker. Let's say $150k a year, the average Looker licence<sup><a href="#fn1" id="r1">1</a></sup>, roughly 300 seats. We are 3 data platform engineers at a company of about 500 people, and most of our week goes on the unglamorous stuff: keeping Snowflake fed, babysitting a dbt project that passed 2,000 models a while ago, and running the Airflow, Airbyte, DataHub and Kubernetes plumbing underneath it all.
+Like a lot of companies, we pay for Looker. About $150k a year<sup><a href="#fn1" id="r1">1</a></sup>, roughly 300 seats. We are 3 data platform engineers at a company of about 500 people, and most of our week goes on the unglamorous stuff: keeping Snowflake fed, babysitting a dbt project that passed 2,000 models a while ago, and running the Airflow, Airbyte, DataHub and Kubernetes plumbing underneath it all.
 
 In February, one of us built a thing on the side to host HTML files. It took an afternoon. 8 months later about as many people use it each week as use Looker, and Looker's weekly users are down by a third.
 
-Influencers keep posting about [software being dead](https://x.com/levelsio/status/2109262337500705094), and some say they've [cancelled and vibecoded all their SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). You can't spend 5 minutes on Hacker News without someone arguing that AI is going to kill B2B SaaS.<sup><a href="#fn2" id="r2">2</a></sup>
+Tech influencers keep posting about [software being dead](https://x.com/levelsio/status/2109262337500705094), and some say they've [cancelled and vibecoded all their SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). You can't spend 5 minutes on Hacker News without someone arguing that AI is going to kill B2B SaaS.<sup><a href="#fn2" id="r2">2</a></sup>
 
 SaaS is dead, apparently. Can we replace our BI tool?
 
@@ -22,19 +22,19 @@ SaaS is dead, apparently. Can we replace our BI tool?
 
 ## The slop got good
 
-A year ago we thought most AI output was slop, and most of it was. The "chat with your data" demos looked great on a toy schema with 4 tables but never really worked at our scale of 2,000 dbt models. The SQL ran without errors, but the numbers were wrong. That's much worse.
+A year ago I thought most AI output was slop, and most of it was. We made a few "chat with your data" demos, and they looked great on a toy schema with 4 tables, but never really worked at our scale. The SQL ran without errors, but the numbers were wrong. That's much worse.
 
-Then Claude Code with Opus 4.5 got really good, and in early January adoption across the company skyrocketed. It could work in our repos and use our tools. More importantly, it could run a query to check its numbers before answering. That mattered a lot more than getting a clever-sounding response. Within a few weeks, people in finance, ops and marketing who had never opened a terminal were prompting all day. All of a sudden everyone was prompting, and nobody was clicking.
+Then Claude Code with Opus 4.5 got really good. Like, really good. In early January adoption across the company skyrocketed. It could work in our repos and use our tools. Also, it could run a query to check the numbers before answering. That mattered a lot more than getting a clever-sounding response. Within a few weeks, people in finance, ops and marketing who had never opened a terminal were prompting all day. All of a sudden everyone was prompting, and nobody was clicking.
 
-Then Claude started spitting out HTML. You would ask for an analysis and you'd get a single file with charts, and honestly, some of those pages looked better than our Looker dashboards. The problem was that it would live in someone's Downloads folder. To share it, they would attach it in Slack and hope. This was way before Anthropic shipped [shareable artifacts](https://claude.com/resources/articles/artifacts-in-claude-code) for Team and Enterprise (June 2026), and we really needed a way to share this new kind of dashboard.
+Around this time, Claude started spitting out a lot of HTML. You would ask for an analysis and you'd get a single file with charts, and honestly, some of those pages looked better than our Looker dashboards. The problem was that it would live in someone's Downloads folder. To share it, they would attach it in Slack and hope. This was way before Anthropic shipped [shareable artifacts](https://claude.com/resources/articles/artifacts-in-claude-code) for Team and Enterprise (June 2026), and we really needed a way to share this new kind of dashboard.
 
 ## We needed to host and share our HTML slop
 
-One day Maddy from our team said she'd just put them all on a web server, and by the end of the day she had vibe-coded the whole thing: a small service that stored the files in S3, SSO in front of it, and (some) tests. We already run everything on Kubernetes, so deploying a service was mostly a matter of adding a Terraform module and a Helm chart. Having all that plumbing in place made the whole thing much easier.
+One day Maddy from our team said she'd just put them all on a web server, with an internal domain name. By the end of the day she had vibe-coded the whole thing: a small service that stored the files in S3, SSO in front of it, and (some) tests. We already run everything on Kubernetes, so deploying a service was mostly a matter of adding a Terraform module and a Helm chart. Having all that plumbing in place made the whole thing much easier.
 
-The upload was a small Python script in a Claude plugin: Claude would write the HTML, the script would push it (behind SSO), and anyone in the company could open the link. Initially, the files were just plain, static HTML. In March we thought, why not, and added a live query API using the viewer's Snowflake OAuth token. This turned out to be the best decision of the year.
+She wrote a small Python scrip and packaged it in a Claude plugin. Users would get their Claude to write the HTML, the script would push it (behind SSO), and anyone in the company could open the link. Initially, the files were just plain, static HTML. In March we thought, why not, and added a live query API using the viewer's Snowflake OAuth token: best decision of the year.
 
-We didn't write a permission model. Snowflake already had one, with roles we'd been maintaining for years, and if Snowflake says you can't read the sales table, then neither can the dashboard. By April, Snowflake was the only login.
+Turns out, we didn't to write a permission model. Snowflake already had one all along. It had roles we'd been maintaining for years, and if Snowflake says you can't read the sales table, then neither can the dashboard. By April, Snowflake was the only login.
 
 <blockquote class="pull">People loved it, for a reason that's embarrassing for the BI industry: the dashboards actually looked good.</blockquote>
 
@@ -57,7 +57,7 @@ Security, at this point, was bad. Like, really bad. Dashboard JavaScript ran on 
 
 In our team, "let's just build a BI tool" became a running joke. It stayed a joke for a few months, until it became clear we were in too deep. We had piled months of vibe-coding onto something with a security model we weren't proud of, and half the company was using it. We stopped joking and said it properly: let's build a BI tool. We got in front of a whiteboard, mostly to work out how to fix the security model, and to agree on what we didn't want to lose: the same S3 bucket, no migration, nothing breaking for the people already using it, and publishing that stayed as easy as before.
 
-The one thing everyone agreed on: anyone can still push any HTML in one command, with no review step, no template and no list of approved widgets. We'd still defend that.
+The one thing everyone agreed on: anyone can still push any HTML in one prompt, with no review step, no template and no list of approved widgets. We'd still defend that.
 
 Every constraint you put between people and their dashboard sends them back to the Downloads folder.
 
@@ -113,7 +113,7 @@ Here's the bill for the whole thing, from the first commit in February to now.
   <div class="track"><div class="bar built" style="width:8.3%">
    <i style="width:77.1%;background:var(--s1)" data-t="Claude tokens to write the platform and the connector: ≈ $6.4k"></i><i style="width:22.9%;background:#7fb0ec" data-t="AWS: Kubernetes, Postgres, S3, load balancers, staging included: $1.9k"></i></div>
    <span class="amt">$8.3k</span><span class="x">12× less</span></div></div>
- <div class="row"><div class="who">Looker licence<small>8 months at the $150k average</small></div>
+ <div class="row"><div class="who">Looker licence<small>8 months of $150k a year</small></div>
   <div class="track"><div class="bar" style="width:100%;background:var(--s2)" data-t="Looker licence for the same 8 months: ≈ $100k"></div><span class="amt in">$100k</span></div></div>
  <div class="keys"><span><i style="background:var(--s1)"></i>Claude tokens $6.4k</span><span><i style="background:#7fb0ec"></i>AWS $1.9k</span></div>
 </div>
@@ -134,7 +134,7 @@ The bill above also leaves out the biggest cost, which is us: 3 engineers spendi
 
 <blockquote class="pull">If you already have a solid platform to build on and a team that knows it well, the rest is mostly Claude's time, and Claude's time is cheap.</blockquote>
 
-AWS and Snowflake sell things nobody can vibe-code: data centres, storage at petabyte prices, compute that's cheap because millions of other customers share it. I think BI is particularly exposed because a lot of its value, at least for us, was in building and presenting dashboards. Claude can now do that for pennies. Products with a real scale advantage are a different story, but I wouldn't be surprised if more companies start replacing parts of their BI stack themselves.
+I'd argue the line is scale. AWS and Snowflake sell things nobody can vibe-code: data centres, storage at petabyte prices, compute that's cheap because millions of other customers share it. I think BI is particularly exposed because a lot of its value, at least for us, was in building and presenting dashboards. Claude can now do that for pennies. Products with a real scale advantage are a different story, but I wouldn't be surprised if more companies start replacing parts of their BI stack themselves.
 
 ## What about Claude Dashboards?
 
@@ -144,7 +144,7 @@ We couldn't really. We started 8 months ago and it didn't exist. If we were star
 
 For us, the dashboards are only part of it. The tool is wired into the way our team already works: it talks to our agent control plane, our analytics platform and Slack, with a bunch of workflows we've built ourselves. Claude Dashboards might cover some of that, but we'd still have to work out how to connect it all. And if a feature changes or the price goes up, we'd have to deal with it.
 
-So it's still the same answer. Rendering isn't a moat any more, for Looker or anyone else: Claude draws the dashboard whether it lives in Claude Dashboards or in our own tool. What's left to choose on is fit. If you have the data, a platform to run on and a team that knows it, build the thing that fits how you work. If you don't, Claude Dashboards is probably the right call.
+So it's still the same answer. If you need software that fits what you do, and you already have a platform to run it on and a dedicated team, build it, unless the moat is scale.
 
 <ol class="note fns">
 <li id="fn1">In line with the $150k average across 355 Looker deals reported by <a href="https://coefficient.io/looker-pricing">Vendr via Coefficient</a>. <a href="#r1">↩</a></li>
