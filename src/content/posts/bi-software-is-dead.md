@@ -34,7 +34,7 @@ One day Maddy from our team said she'd just put them all on a web server, with a
 
 She wrote a small Python script and packaged it in a Claude plugin. Users would get their Claude to write the HTML, the script would push it (behind SSO), and anyone in the company could open the link. Initially, the files were just plain, static HTML. In March we thought, why not, and added a live query API using the viewer's Snowflake OAuth token: best decision of the year.
 
-Turns out, we didn't need to write a permission model. Snowflake already had one all along. It had roles we'd been maintaining for years, and if Snowflake says you can't read the sales table, then neither can the dashboard. By April, Snowflake was the only login.
+Turns out, we didn't need to write a permission model. Snowflake already had one all along. It had roles we'd been maintaining for years, and if Snowflake says you can't read the sales table, then neither can the dashboard. By April, Snowflake OAuth was the only login.
 
 <blockquote class="pull">People loved it, for a reason that's embarrassing for the BI industry: the dashboards actually looked good.</blockquote>
 
