@@ -32,9 +32,9 @@ Around this time, Claude started spitting out a lot of HTML. You would ask for a
 
 One day Maddy from our team said she'd just put them all on a web server, with an internal domain name. By the end of the day she had vibe-coded the whole thing: a small service that stored the files in S3, SSO in front of it, and (some) tests. We already run everything on Kubernetes, so deploying a service was mostly a matter of adding a Terraform module and a Helm chart. Having all that plumbing in place made the whole thing much easier.
 
-She wrote a small Python scrip and packaged it in a Claude plugin. Users would get their Claude to write the HTML, the script would push it (behind SSO), and anyone in the company could open the link. Initially, the files were just plain, static HTML. In March we thought, why not, and added a live query API using the viewer's Snowflake OAuth token: best decision of the year.
+She wrote a small Python script and packaged it in a Claude plugin. Users would get their Claude to write the HTML, the script would push it (behind SSO), and anyone in the company could open the link. Initially, the files were just plain, static HTML. In March we thought, why not, and added a live query API using the viewer's Snowflake OAuth token: best decision of the year.
 
-Turns out, we didn't to write a permission model. Snowflake already had one all along. It had roles we'd been maintaining for years, and if Snowflake says you can't read the sales table, then neither can the dashboard. By April, Snowflake was the only login.
+Turns out, we didn't need to write a permission model. Snowflake already had one all along. It had roles we'd been maintaining for years, and if Snowflake says you can't read the sales table, then neither can the dashboard. By April, Snowflake was the only login.
 
 <blockquote class="pull">People loved it, for a reason that's embarrassing for the BI industry: the dashboards actually looked good.</blockquote>
 
