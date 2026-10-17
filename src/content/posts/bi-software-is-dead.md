@@ -12,7 +12,7 @@ In February, one of us built a thing on the side to host HTML files. It took an 
 
 Tech influencers keep posting about [software being dead](https://x.com/levelsio/status/2109262337500705094), and some say they've [cancelled and vibecoded all their SaaS subscriptions](https://x.com/levelsio/status/2081437287871586338). They say AI is going to kill B2B SaaS.<sup><a href="#fn2" id="r2">2</a></sup>
 
-SaaS is dead, apparently. Can we replace our BI tool?
+SaaS is dead, apparently. Can we replace our enterprise BI tool?
 
 <div class="pair">
 <div class="chart"><h3>Share of "self-hosted" GitHub repos</h3><svg id="hn1" viewBox="0 0 345 244"></svg></div>
