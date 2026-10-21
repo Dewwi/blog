@@ -1,5 +1,5 @@
 ---
-title: "Can we replace our $150k Looker with a bucket of HTML files?"
+title: "Can we replace a $150k Looker with a bucket of HTML files?"
 description: "(BI) Software is dead, apparently"
 date: 2026-10-14
 tags: ["data-engineering", "ai-agents", "claude"]
