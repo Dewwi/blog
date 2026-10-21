@@ -11,7 +11,9 @@ const { post, headings, prev, next } = Astro.props;
 const { title, description, date, updated, tags } = post.data;
 const url = postUrl(post);
 const words = wordCount(post.body);
-const image = `/og/${post.id}.png`;
+// Version the card URL by title so LinkedIn & co. refetch it after a rename.
+const titleHash = [...title].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7).toString(36);
+const image = `/og/${post.id}.png?v=${titleHash}`;
 const schema = [{
   '@type': 'BlogPosting',
   '@id': `${url}#article`,
