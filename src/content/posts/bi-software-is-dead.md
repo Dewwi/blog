@@ -6,7 +6,7 @@ tags: ["data-engineering", "ai-agents", "claude"]
 draft: false
 ---
 
-Like a lot of companies, we pay for Looker. About $150k a year<sup><a href="#fn1" id="r1">1</a></sup>, roughly 300 seats. We are 3 data platform engineers at a company of about 500 people, and most of our week goes on the unglamorous stuff: keeping Snowflake fed, babysitting a dbt project that passed 2,000 models a while ago, and running the Airflow, Airbyte, DataHub and Kubernetes plumbing underneath it all.
+Like a lot of companies, we pay for Looker. Let's say $150k a year, the average Looker licence<sup><a href="#fn1" id="r1">1</a></sup>, roughly 300 seats. We are 3 data platform engineers at a company of about 500 people, and most of our week goes on the unglamorous stuff: keeping Snowflake fed, babysitting a dbt project that passed 2,000 models a while ago, and running the Airflow, Airbyte, DataHub and Kubernetes plumbing underneath it all.
 
 In February, one of us built a thing on the side to host HTML files. It took an afternoon. 8 months later, and it’s already got as many weekly users as Looker in our company, maybe even more and Looker’s down a third.
 
@@ -113,7 +113,7 @@ Here's the bill for the whole thing, from the first commit in February to now.
   <div class="track"><div class="bar built" style="width:8.3%">
    <i style="width:77.1%;background:var(--s1)" data-t="Claude tokens to write the platform and the connector: ≈ $6.4k"></i><i style="width:22.9%;background:#7fb0ec" data-t="AWS: Kubernetes, Postgres, S3, load balancers, staging included: $1.9k"></i></div>
    <span class="amt">$8.3k</span><span class="x">12× less</span></div></div>
- <div class="row"><div class="who">Looker licence<small>8 months of $150k a year</small></div>
+ <div class="row"><div class="who">Looker licence<small>8 months at the $150k average</small></div>
   <div class="track"><div class="bar" style="width:100%;background:var(--s2)" data-t="Looker licence for the same 8 months: ≈ $100k"></div><span class="amt in">$100k</span></div></div>
  <div class="keys"><span><i style="background:var(--s1)"></i>Claude tokens $6.4k</span><span><i style="background:#7fb0ec"></i>AWS $1.9k</span></div>
 </div>
